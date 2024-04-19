@@ -1,0 +1,11 @@
+.button {
+  padding: 17px;
+  border-radius: $border-radius-15;
+  width: 100%;
+  position: relative;
+
+  &:active {
+    transform: translateY($box-shadow-height);
+    overflow: hidden;
+  }
+}

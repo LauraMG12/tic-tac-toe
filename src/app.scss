@@ -1,0 +1,131 @@
+// VARIABLES
+// colors
+$blue: #31c3bd;
+$blue-hover: #65e9e4;
+$blue-shadow: #118c87;
+$orange: #f2b137;
+$orange-hover: #ffc860;
+$orange-shadow: #cc8b13;
+$silver: #a8bfc9;
+$silver-hover: #dbe8ed;
+$semi-dark-navy: #1f3641;
+$dark-navy: #1a2a33;
+$navy-shadow: #10212a;
+
+// typography
+$font-family: 'Outfit', sans-serif;
+$font-heading-l: 700 40px $font-family;
+$font-heading-m: 700 24px $font-family;
+$font-heading-s: 700 20px $font-family;
+$font-heading-xs: 700 16px $font-family;
+$font-body: 500 14px $font-family;
+
+// spacing
+$box-shadow-height: 8px;
+
+// border-radis
+$border-radius-10: 10px;
+$border-radius-15: 15px;
+
+//transition
+
+// STYLES
+// global styles
+:root {
+  background-color: $dark-navy;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-transform: uppercase;
+}
+
+.body {
+  font: $font-body;
+  letter-spacing: 0.8px;
+}
+
+.button {
+  border: none;
+}
+
+p {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+// typography styles
+.heading-l {
+  font: $font-heading-l;
+  letter-spacing: 2.5px;
+}
+
+.heading-m {
+  font: $font-heading-m;
+  letter-spacing: 1.5px;
+}
+
+.heading-s {
+  font: $font-heading-s;
+  letter-spacing: 1.25px;
+}
+
+.heading-xs {
+  font: $font-heading-xs;
+  letter-spacing: 1px;
+}
+
+// color styles
+$bottom-shadow-height: 8px;
+
+.blue-theme {
+  background-color: $blue;
+
+  &:after {
+    background-color: $blue-shadow;
+  }
+  @media (hover: hover) {
+    &:hover {
+      cursor: pointer;
+      background-color: $blue-hover;
+    }
+  }
+}
+
+.orange-theme {
+  background-color: $orange;
+
+  &:after {
+    background-color: $orange-shadow;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      cursor: pointer;
+      background-color: $orange-hover;
+    }
+  }
+}
+
+.silver-theme {
+  background-color: $silver;
+
+  @media (hover: hover) {
+    &:hover {
+      cursor: pointer;
+      background-color: $silver-hover;
+    }
+  }
+}
+
+.navy-theme {
+  background-color: $semi-dark-navy;
+  &:after {
+    background-color: $navy-shadow;
+  }
+}

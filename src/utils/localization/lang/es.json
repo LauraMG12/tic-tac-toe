@@ -1,0 +1,8 @@
+{
+  "player_selector": {
+    "pick_player_one_mark": "Elige el símbolo del jugador 1",
+    "x_goes_first": "Recordatorio: x empieza",
+    "one_player": "Nuevo juego (vs CPU)",
+    "two_players": "Nuevo juego (vs jugador)"
+  }
+}

@@ -1,0 +1,23 @@
+.box-shadow {
+  width: 100%;
+  position: relative;
+  margin-bottom: calc($box-shadow-height * 2);
+
+  & > :after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: $box-shadow-height;
+    left: 0px;
+    z-index: -1;
+    border-radius: $border-radius-15;
+  }
+  &.clickable:active {
+    & > :after {
+      top: 0;
+      opacity: 0;
+    }
+  }
+}
