@@ -8,4 +8,12 @@
     transform: translateY($box-shadow-height);
     overflow: hidden;
   }
+
+  &.clickable {
+    @media (hover: hover) {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
 }

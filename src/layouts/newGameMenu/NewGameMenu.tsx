@@ -11,6 +11,7 @@ import BoxShadow from '../../components/BoxShadow/BoxShadow';
 interface NewGameMenuProps {
   selectedMark: Mark;
   onSelectMark: (event: Mark) => void;
+  onStartGame: () => void;
 }
 
 export default function NewGameMenu(props: NewGameMenuProps) {
@@ -54,10 +55,10 @@ export default function NewGameMenu(props: NewGameMenuProps) {
         </div>
       </BoxShadow>
       <div className="oponent-buttons-wrapper">
-        <Button theme={ColorTheme.ORANGE}>
+        <Button theme={ColorTheme.ORANGE} onButtonClick={props.onStartGame}>
           {t('player_selector.one_player')}
         </Button>
-        <Button theme={ColorTheme.BLUE}>
+        <Button theme={ColorTheme.BLUE} onButtonClick={props.onStartGame}>
           {t('player_selector.two_players')}
         </Button>
       </div>
