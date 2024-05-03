@@ -1,20 +1,16 @@
-import './NewGameMenu.scss';
-
-import TicTacToeLogo from '../../components/SvgIcons/TicTacToeLogo';
-import CrossIcon from '../../components/SvgIcons/CrossIcon';
-import CircleIcon from '../../components/SvgIcons/CircleIcon';
-import Button from '../../components/Button/Button';
-import { ColorTheme, Mark } from '../../utils/interfaces';
 import { useTranslation } from 'react-i18next';
-import BoxShadow from '../../components/BoxShadow/BoxShadow';
+import BoxShadow from '../../../../components/BoxShadow/BoxShadow';
+import CircleIcon from '../../../../components/SvgIcons/CircleIcon';
+import CrossIcon from '../../../../components/SvgIcons/CrossIcon';
+import { Mark } from '../../../../utils/interfaces';
+import './PlayerMarkSelector.scss';
 
-interface NewGameMenuProps {
+interface PlayerMarkSelectorProps {
   selectedMark: Mark;
   onSelectMark: (event: Mark) => void;
-  onStartGame: () => void;
 }
 
-export default function NewGameMenu(props: NewGameMenuProps) {
+export default function PlayerSelector(props: PlayerMarkSelectorProps) {
   const { t } = useTranslation();
 
   const toggleSelectedMark = () => {
@@ -24,10 +20,9 @@ export default function NewGameMenu(props: NewGameMenuProps) {
   };
 
   return (
-    <section className="new-game-menu">
-      <TicTacToeLogo />
-      <BoxShadow>
-        <div className="player-selector navy-theme">
+    <>
+      <BoxShadow wide={true}>
+        <div className="player-mark-selector navy-theme">
           <p className="heading-xs">
             {t('player_selector.pick_player_one_mark')}
           </p>
@@ -54,14 +49,6 @@ export default function NewGameMenu(props: NewGameMenuProps) {
           <p className="body">{t('player_selector.x_goes_first')}</p>
         </div>
       </BoxShadow>
-      <div className="oponent-buttons-wrapper">
-        <Button theme={ColorTheme.ORANGE} onButtonClick={props.onStartGame}>
-          {t('player_selector.one_player')}
-        </Button>
-        <Button theme={ColorTheme.BLUE} onButtonClick={props.onStartGame}>
-          {t('player_selector.two_players')}
-        </Button>
-      </div>
-    </section>
+    </>
   );
 }

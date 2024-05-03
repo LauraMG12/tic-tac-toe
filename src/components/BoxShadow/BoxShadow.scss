@@ -1,8 +1,5 @@
 .box-shadow {
-  width: 100%;
   position: relative;
-  margin-bottom: calc($box-shadow-height * 2);
-
   & > :after {
     content: '';
     display: block;
@@ -13,6 +10,9 @@
     left: 0px;
     z-index: -1;
     border-radius: $border-radius-15;
+  }
+  &.wide {
+    width: 100%;
   }
   &.clickable:active {
     & > :after {

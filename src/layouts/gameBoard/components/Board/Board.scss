@@ -1,0 +1,12 @@
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+  .board-cell {
+    width: 100%;
+    height: calc(140px - $bottom-shadow-height);
+    border-radius: $border-radius-15;
+  }
+}

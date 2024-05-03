@@ -4,5 +4,8 @@
     "x_goes_first": "Remember: x goes first",
     "one_player": "New game (vs CPU)",
     "two_players": "New game (vs player)"
+  },
+  "game_board": {
+    "turn": "Turn"
   }
 }

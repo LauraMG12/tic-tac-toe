@@ -1,15 +1,27 @@
 .button {
-  padding: 17px;
+  padding: 0 20px;
   border-radius: $border-radius-15;
-  width: 100%;
+  height: calc($button-height - $box-shadow-height);
+  min-width: $button-height;
   position: relative;
+  display: flex;
+  gap: 13px;
+  align-items: center;
+  justify-content: center;
 
-  &:active {
-    transform: translateY($box-shadow-height);
-    overflow: hidden;
+  &.square {
+    width: $button-height;
+    padding: 0;
+  }
+  &.wide {
+    width: 100%;
   }
 
   &.clickable {
+    &:active {
+      transform: translateY($box-shadow-height);
+      overflow: hidden;
+    }
     @media (hover: hover) {
       &:hover {
         cursor: pointer;

@@ -22,7 +22,7 @@ $font-heading-xs: 700 16px $font-family;
 $font-body: 500 14px $font-family;
 
 // spacing
-$box-shadow-height: 8px;
+$box-shadow-height: 6px;
 
 // border-radis
 $border-radius-10: 10px;
@@ -60,6 +60,23 @@ p {
   user-select: none;
 }
 
+.app-wrapper {
+  $side-padding: 24px;
+
+  height: 100dvh;
+  height: 100vh;
+  max-width: calc(460px + ($side-padding * 2));
+  min-width: calc(327px + ($side-padding * 2));
+  margin: auto;
+  padding: 0 $side-padding;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  gap: 30px;
+}
+
 // typography styles
 .heading-l {
   font: $font-heading-l;
@@ -81,9 +98,11 @@ p {
   letter-spacing: 1px;
 }
 
-// color styles
+// sizes
 $bottom-shadow-height: 8px;
+$button-height: 52px;
 
+// color styles
 .blue-theme {
   background-color: $blue;
 
@@ -113,6 +132,11 @@ $bottom-shadow-height: 8px;
 
 .silver-theme {
   background-color: $silver;
+  color: $silver;
+
+  &:after {
+    background-color: $silver-shadow;
+  }
 
   @media (hover: hover) {
     &:hover {
@@ -126,4 +150,12 @@ $bottom-shadow-height: 8px;
   &:after {
     background-color: $navy-shadow;
   }
+}
+
+.dark-navy {
+  color: $dark-navy;
+}
+
+.silver {
+  color: $silver;
 }

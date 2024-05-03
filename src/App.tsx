@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import NewGameMenu from './layouts/newGameMenu/NewGameMenu';
-import GameBoard from './layouts/gameBoard/GameBoard';
+import NewGameMenuView from './layouts/newGameMenu/NewGameMenuView';
+import GameBoardView from './layouts/gameBoard/GameBoardView';
 
 import { Mark } from './utils/interfaces';
 
@@ -17,16 +17,16 @@ export default function App() {
     setIsNewGame(false);
   }
   return (
-    <>
+    <div className="app-wrapper">
       {isNewGame ? (
-        <NewGameMenu
+        <NewGameMenuView
           selectedMark={selectedMark}
           onSelectMark={onSelectMark}
           onStartGame={onStartGame}
         />
       ) : (
-        <GameBoard />
+        <GameBoardView />
       )}
-    </>
+    </div>
   );
 }

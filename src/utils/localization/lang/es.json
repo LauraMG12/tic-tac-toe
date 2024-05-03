@@ -4,5 +4,8 @@
     "x_goes_first": "Recordatorio: x empieza",
     "one_player": "Nuevo juego (vs CPU)",
     "two_players": "Nuevo juego (vs jugador)"
+  },
+  "game_board": {
+    "turn": "Turno"
   }
 }

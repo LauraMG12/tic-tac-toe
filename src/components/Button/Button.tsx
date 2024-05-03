@@ -5,19 +5,24 @@ import './Button.scss';
 import { ReactNode } from 'react';
 
 interface ButtonProps {
-  children: ReactNode;
+  icon?: ReactNode;
+  text?: ReactNode;
   theme: ColorTheme;
+  wide?: boolean;
   onButtonClick?: () => void;
 }
 
 export default function Button(props: ButtonProps) {
+  const squareButton = props.icon && !props.text;
+  const clickable = !!props.onButtonClick;
   return (
-    <BoxShadow clickable={true}>
+    <BoxShadow clickable={clickable} wide={props.wide}>
       <button
         onClick={props.onButtonClick}
-        className={`button ${props.theme} ${props.onButtonClick ? 'clickable' : ''}`}
+        className={`button ${props.theme} ${clickable ? 'clickable' : ''} ${props.wide ? 'wide' : ''} ${squareButton ? 'square' : ''}`}
       >
-        <p className="heading-s">{props.children}</p>
+        {!!props.icon && <>{props.icon}</>}
+        {!!props.text && <>{props.text}</>}
       </button>
     </BoxShadow>
   );
