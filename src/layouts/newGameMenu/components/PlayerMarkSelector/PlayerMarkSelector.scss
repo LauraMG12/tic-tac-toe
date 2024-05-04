@@ -22,13 +22,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-
-      @media (hover: hover) {
-        cursor: pointer;
-        &:not(.silver-theme):hover {
-          background-color: rgba(168, 191, 201, 0.05);
-        }
-      }
     }
   }
 }

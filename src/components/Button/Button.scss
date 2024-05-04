@@ -22,10 +22,5 @@
       transform: translateY($box-shadow-height);
       overflow: hidden;
     }
-    @media (hover: hover) {
-      &:hover {
-        cursor: pointer;
-      }
-    }
   }
 }

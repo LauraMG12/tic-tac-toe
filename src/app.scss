@@ -12,6 +12,7 @@ $silver-shadow: #979797;
 $semi-dark-navy: #1f3641;
 $dark-navy: #1a2a33;
 $navy-shadow: #10212a;
+$navy-hover: #a8bfc90d;
 
 // typography
 $font-family: 'Outfit', sans-serif;
@@ -109,9 +110,12 @@ $button-height: 52px;
   &:after {
     background-color: $blue-shadow;
   }
-  @media (hover: hover) {
-    &:hover {
-      background-color: $blue-hover;
+  &.hover {
+    @media (hover: hover) {
+      &:hover {
+        background-color: $blue-hover;
+        cursor: pointer;
+      }
     }
   }
 }
@@ -123,9 +127,12 @@ $button-height: 52px;
     background-color: $orange-shadow;
   }
 
-  @media (hover: hover) {
-    &:hover {
-      background-color: $orange-hover;
+  &.hover {
+    @media (hover: hover) {
+      &:hover {
+        background-color: $orange-hover;
+        cursor: pointer;
+      }
     }
   }
 }
@@ -138,9 +145,12 @@ $button-height: 52px;
     background-color: $silver-shadow;
   }
 
-  @media (hover: hover) {
-    &:hover {
-      background-color: $silver-hover;
+  &.hover {
+    @media (hover: hover) {
+      &:hover {
+        background-color: $silver-hover;
+        cursor: pointer;
+      }
     }
   }
 }
@@ -149,6 +159,17 @@ $button-height: 52px;
   background-color: $semi-dark-navy;
   &:after {
     background-color: $navy-shadow;
+  }
+
+  &.hover {
+    background-color: transparent;
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: $navy-hover;
+        cursor: pointer;
+      }
+    }
   }
 }
 

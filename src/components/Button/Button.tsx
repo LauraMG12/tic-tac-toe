@@ -19,7 +19,7 @@ export default function Button(props: ButtonProps) {
     <BoxShadow clickable={clickable} wide={props.wide}>
       <button
         onClick={props.onButtonClick}
-        className={`button ${props.theme} ${clickable ? 'clickable' : ''} ${props.wide ? 'wide' : ''} ${squareButton ? 'square' : ''}`}
+        className={`button ${props.theme} ${clickable ? 'clickable hover' : ''} ${props.wide ? 'wide' : ''} ${squareButton ? 'square' : ''}`}
       >
         {!!props.icon && <>{props.icon}</>}
         {!!props.text && <>{props.text}</>}

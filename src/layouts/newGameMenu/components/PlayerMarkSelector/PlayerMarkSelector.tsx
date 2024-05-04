@@ -28,7 +28,7 @@ export default function PlayerSelector(props: PlayerMarkSelectorProps) {
           </p>
           <div className="mark-selector">
             <div
-              className={`option ${props.selectedMark === Mark.CROSS ? 'silver-theme' : ''}`}
+              className={`option ${props.selectedMark === Mark.CROSS ? 'silver-theme hover' : 'navy-theme hover'}`}
               onClick={toggleSelectedMark}
             >
               <CrossIcon
@@ -36,7 +36,7 @@ export default function PlayerSelector(props: PlayerMarkSelectorProps) {
               />
             </div>
             <div
-              className={`option ${props.selectedMark === Mark.CIRCLE ? 'silver-theme' : ''}`}
+              className={`option ${props.selectedMark === Mark.CIRCLE ? 'silver-theme hover' : 'navy-theme hover'}`}
               onClick={toggleSelectedMark}
             >
               <CircleIcon

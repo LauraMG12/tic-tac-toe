@@ -1,7 +1,6 @@
 import './ScoreBoard.scss';
 
 export default function ScoreBoard() {
-  // No hover effect
   return (
     <div className="score-board">
       <div className="cell cross blue-theme ">
