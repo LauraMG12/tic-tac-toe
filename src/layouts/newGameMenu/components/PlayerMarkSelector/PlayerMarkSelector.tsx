@@ -46,7 +46,7 @@ export default function PlayerSelector(props: PlayerMarkSelectorProps) {
               />
             </div>
           </div>
-          <p className="body">{t('player_selector.x_goes_first')}</p>
+          <p className="font-body">{t('player_selector.x_goes_first')}</p>
         </div>
       </BoxShadow>
     </>

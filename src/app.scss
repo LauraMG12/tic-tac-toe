@@ -43,11 +43,6 @@ $border-radius-15: 15px;
   text-transform: uppercase;
 }
 
-.body {
-  font: $font-body;
-  letter-spacing: 0.8px;
-}
-
 .button {
   border: none;
 }
@@ -96,6 +91,11 @@ p {
 .heading-xs {
   font: $font-heading-xs;
   letter-spacing: 1px;
+}
+
+.font-body {
+  font: $font-body;
+  letter-spacing: 0.8px;
 }
 
 // sizes

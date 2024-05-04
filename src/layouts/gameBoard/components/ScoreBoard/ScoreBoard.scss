@@ -1,0 +1,17 @@
+.score-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  gap: 20px;
+  width: 100%;
+  .cell {
+    width: 100%;
+    padding: 12px 0;
+    border-radius: $border-radius-15;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: $dark-navy;
+  }
+}
