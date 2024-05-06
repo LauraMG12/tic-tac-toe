@@ -1,6 +1,11 @@
 .game-board-header {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  gap: 20px;
   width: 100%;
-  display: flex;
   align-items: center;
-  justify-content: space-between;
+  .redo-button {
+    justify-self: end;
+  }
 }

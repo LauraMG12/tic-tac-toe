@@ -11,17 +11,22 @@ export default function GameBoardHeader() {
 
   return (
     <div className="game-board-header">
-      <Logo size="32" /> {/* Border radius: 10px */}
+      <Logo />
+      {/*TODO: Button border radius: 10px */}
+
       <Button
         theme={ColorTheme.NAVY}
         icon={<Cross size="20" color="silver" />}
         text={<p className="heading-xs silver">{t('game_board.turn')}</p>}
+        wide={true}
       />
-      <Button
-        theme={ColorTheme.SILVER}
-        icon={<Redo size="20" color="dark-navy" />}
-        onButtonClick={() => console.log('redo')}
-      />
+      <div className="redo-button">
+        <Button
+          theme={ColorTheme.SILVER}
+          icon={<Redo size="20" color="dark-navy" />}
+          onButtonClick={() => console.log('redo')}
+        />
+      </div>
     </div>
   );
 }

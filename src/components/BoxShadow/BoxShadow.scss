@@ -1,5 +1,6 @@
 .box-shadow {
   position: relative;
+  width: auto;
   & > :after {
     content: '';
     display: block;

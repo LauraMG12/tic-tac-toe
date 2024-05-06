@@ -14,7 +14,7 @@ interface NewGameMenuProps {
 export default function NewGameMenu(props: NewGameMenuProps) {
   return (
     <section className="new-game-menu">
-      <Logo size="32" />
+      <Logo />
       <PlayerMarkSelector
         selectedMark={props.selectedMark}
         onSelectMark={props.onSelectMark}
