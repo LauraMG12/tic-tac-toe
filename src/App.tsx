@@ -3,7 +3,7 @@ import { useState } from 'react';
 import NewGameMenuView from './layouts/newGameMenu/NewGameMenuView';
 import GameBoardView from './layouts/gameBoard/GameBoardView';
 
-import { Mark } from './utils/interfaces';
+import { Mark } from './utils/types/interfaces';
 
 export default function App() {
   const [selectedMark, setSelectedMark] = useState(Mark.CROSS);

@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 import './OponentSelector.scss';
 import Button from '../../../../components/Button/Button';
-import { ColorTheme } from '../../../../utils/interfaces';
+import { ColorTheme } from '../../../../utils/types/interfaces';
 
 interface OponentSelectorProps {
   onStartGame: () => void;

@@ -34,6 +34,12 @@ $border-radius-15: 15px;
 // STYLES
 // global styles
 :root {
+  --currentColor: 'currentColor';
+  --blue: #31c3bd;
+  --orange: #f2b137;
+  --silver: #a8bfc9;
+  --dark-navy: #1a2a33;
+
   background-color: $dark-navy;
 }
 

@@ -1,9 +1,9 @@
 import './NewGameMenuView.scss';
 
-import TicTacToeLogo from '../../components/SvgIcons/TicTacToeLogo';
-import { Mark } from '../../utils/interfaces';
+import { Mark } from '../../utils/types/interfaces';
 import OponentSelector from './components/OponentSelector/OponentSelector';
 import PlayerMarkSelector from './components/PlayerMarkSelector/PlayerMarkSelector';
+import Logo from '../../components/SvgIcons/icons/Logo';
 
 interface NewGameMenuProps {
   selectedMark: Mark;
@@ -14,7 +14,7 @@ interface NewGameMenuProps {
 export default function NewGameMenu(props: NewGameMenuProps) {
   return (
     <section className="new-game-menu">
-      <TicTacToeLogo />
+      <Logo size="32" />
       <PlayerMarkSelector
         selectedMark={props.selectedMark}
         onSelectMark={props.onSelectMark}

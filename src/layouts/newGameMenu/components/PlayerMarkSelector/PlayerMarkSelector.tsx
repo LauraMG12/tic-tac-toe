@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import BoxShadow from '../../../../components/BoxShadow/BoxShadow';
-import CircleIcon from '../../../../components/SvgIcons/CircleIcon';
-import CrossIcon from '../../../../components/SvgIcons/CrossIcon';
-import { Mark } from '../../../../utils/interfaces';
+import { Mark } from '../../../../utils/types/interfaces';
 import './PlayerMarkSelector.scss';
+import Cross from '../../../../components/SvgIcons/icons/Cross';
+import Circle from '../../../../components/SvgIcons/icons/Circle';
 
 interface PlayerMarkSelectorProps {
   selectedMark: Mark;
@@ -31,17 +31,21 @@ export default function PlayerSelector(props: PlayerMarkSelectorProps) {
               className={`option ${props.selectedMark === Mark.CROSS ? 'silver-theme hover' : 'navy-theme hover'}`}
               onClick={toggleSelectedMark}
             >
-              <CrossIcon
-                fill={props.selectedMark === Mark.CROSS ? '#1a2a33' : '#a8bfc9'}
+              <Cross
+                size="32"
+                color={
+                  props.selectedMark === Mark.CROSS ? 'dark-navy' : 'silver'
+                }
               />
             </div>
             <div
               className={`option ${props.selectedMark === Mark.CIRCLE ? 'silver-theme hover' : 'navy-theme hover'}`}
               onClick={toggleSelectedMark}
             >
-              <CircleIcon
-                fill={
-                  props.selectedMark === Mark.CIRCLE ? '#1a2a33' : '#a8bfc9'
+              <Circle
+                size="32"
+                color={
+                  props.selectedMark === Mark.CIRCLE ? 'dark-navy' : 'silver'
                 }
               />
             </div>

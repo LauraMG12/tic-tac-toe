@@ -1,4 +1,4 @@
-import { ColorTheme } from '../../utils/interfaces';
+import { ColorTheme } from '../../utils/types/interfaces';
 import BoxShadow from '../BoxShadow/BoxShadow';
 import './Button.scss';
 

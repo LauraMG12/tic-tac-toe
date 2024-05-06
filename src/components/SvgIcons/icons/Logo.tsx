@@ -1,4 +1,4 @@
-export default function TicTacToeLogo() {
+export default function Logo() {
   return (
     <>
       <svg
