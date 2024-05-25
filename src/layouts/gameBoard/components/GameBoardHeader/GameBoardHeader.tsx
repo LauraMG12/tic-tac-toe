@@ -1,12 +1,17 @@
 import { useTranslation } from 'react-i18next';
 import Button from '../../../../components/Button/Button';
-import { ColorTheme } from '../../../../utils/types/interfaces';
+import { ColorTheme, Mark } from '../../../../utils/types/interfaces';
 import './GameBoardHeader.scss';
 import Logo from '../../../../components/SvgIcons/icons/Logo';
 import Cross from '../../../../components/SvgIcons/icons/Cross';
 import Redo from '../../../../components/SvgIcons/icons/Redo';
+import Circle from '../../../../components/SvgIcons/icons/Circle';
 
-export default function GameBoardHeader() {
+interface GameBoardHeaderProps {
+  activePlayer: Mark;
+}
+
+export default function GameBoardHeader(props: GameBoardHeaderProps) {
   const { t } = useTranslation();
 
   return (
@@ -16,7 +21,13 @@ export default function GameBoardHeader() {
 
       <Button
         theme={ColorTheme.NAVY}
-        icon={<Cross size="20" color="silver" />}
+        icon={
+          props.activePlayer === Mark.CROSS ? (
+            <Cross size="20" color="silver" />
+          ) : (
+            <Circle size="20" color="silver" />
+          )
+        }
         text={<p className="heading-xs silver">{t('game_board.turn')}</p>}
         wide={true}
       />

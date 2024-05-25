@@ -1,7 +1,7 @@
 import { IconProps, SVG_ICON_COLOR_MAP } from '../SvgIcon.model';
 
 export default function Circle(props: IconProps) {
-  const color = SVG_ICON_COLOR_MAP[props.color!];
+  const color = SVG_ICON_COLOR_MAP[props.color];
   return (
     <>
       <svg

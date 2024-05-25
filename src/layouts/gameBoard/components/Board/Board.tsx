@@ -1,38 +1,60 @@
+import { useState } from 'react';
 import BoxShadow from '../../../../components/BoxShadow/BoxShadow';
 import './Board.scss';
+import { Mark } from '../../../../utils/types/interfaces';
+import Cross from '../../../../components/SvgIcons/icons/Cross';
+import Circle from '../../../../components/SvgIcons/icons/Circle';
 
-export default function Board() {
+interface BoardProps {
+  onSelectCell: () => void;
+  activePlayer: Mark;
+}
+
+const initialGameBoard = [
+  [Mark.NONE, Mark.NONE, Mark.NONE],
+  [Mark.NONE, Mark.NONE, Mark.NONE],
+  [Mark.NONE, Mark.NONE, Mark.NONE],
+];
+
+export default function Board(props: BoardProps) {
+  const [gameBoard, setGameBoard] = useState(initialGameBoard);
+
+  function handleSelectCell(rowIndex: number, colIndex: number) {
+    setGameBoard((prevGameBoard) => {
+      const updatedGameBoard = [
+        ...prevGameBoard.map((innerArray) => [...innerArray]),
+      ];
+      updatedGameBoard[rowIndex][colIndex] = props.activePlayer;
+      return updatedGameBoard;
+    });
+    props.onSelectCell();
+  }
   return (
     <>
-      <div className="board">
-        <BoxShadow>
-          <div className="board-cell navy-theme cell-1-1" />
-        </BoxShadow>
-        <BoxShadow>
-          <div className="board-cell navy-theme cell-1-2" />
-        </BoxShadow>
-        <BoxShadow>
-          <div className="board-cell navy-theme cell-1-3" />
-        </BoxShadow>
-        <BoxShadow>
-          <div className="board-cell navy-theme cell-2-1" />
-        </BoxShadow>
-        <BoxShadow>
-          <div className="board-cell navy-theme cell-2-2" />
-        </BoxShadow>
-        <BoxShadow>
-          <div className="board-cell navy-theme cell-2-3" />
-        </BoxShadow>
-        <BoxShadow>
-          <div className="board-cell navy-theme cell-3-1" />
-        </BoxShadow>
-        <BoxShadow>
-          <div className="board-cell navy-theme cell-3-2" />
-        </BoxShadow>
-        <BoxShadow>
-          <div className="board-cell navy-theme cell-3-3" />
-        </BoxShadow>
-      </div>
+      <ol className="board">
+        {gameBoard.map((row, rowIndex) => (
+          <li key={rowIndex}>
+            <ol className="column">
+              {row.map((playerMark, colIndex) => (
+                <BoxShadow key={colIndex}>
+                  <div
+                    onClick={() => handleSelectCell(rowIndex, colIndex)}
+                    className={`board-cell navy-theme ${playerMark !== Mark.NONE ? 'disabled' : ''}`}
+                  >
+                    {playerMark === Mark.CROSS ? (
+                      <Cross size="64" color="blue" />
+                    ) : playerMark === Mark.CIRCLE ? (
+                      <Circle size="64" color="orange" />
+                    ) : (
+                      ''
+                    )}
+                  </div>
+                </BoxShadow>
+              ))}
+            </ol>
+          </li>
+        ))}
+      </ol>
     </>
   );
 }

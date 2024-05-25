@@ -4,19 +4,20 @@ import { Mark } from '../../../../utils/types/interfaces';
 import './PlayerMarkSelector.scss';
 import Cross from '../../../../components/SvgIcons/icons/Cross';
 import Circle from '../../../../components/SvgIcons/icons/Circle';
+import { useContext, useState } from 'react';
+import { defaultMarkContext } from '../../../../context/gameContext';
 
-interface PlayerMarkSelectorProps {
-  selectedMark: Mark;
-  onSelectMark: (event: Mark) => void;
-}
-
-export default function PlayerSelector(props: PlayerMarkSelectorProps) {
+export default function PlayerMarkSelector() {
   const { t } = useTranslation();
 
+  const [selectedMark, setSelectedMark] = useState(
+    useContext(defaultMarkContext)
+  );
+
   const toggleSelectedMark = () => {
-    props.selectedMark === Mark.CROSS
-      ? props.onSelectMark(Mark.CIRCLE)
-      : props.onSelectMark(Mark.CROSS);
+    selectedMark === Mark.CROSS
+      ? setSelectedMark(Mark.CIRCLE)
+      : setSelectedMark(Mark.CROSS);
   };
 
   return (
@@ -28,25 +29,21 @@ export default function PlayerSelector(props: PlayerMarkSelectorProps) {
           </p>
           <div className="mark-selector">
             <div
-              className={`option ${props.selectedMark === Mark.CROSS ? 'silver-theme hover' : 'navy-theme hover'}`}
+              className={`option ${selectedMark === Mark.CROSS ? 'silver-theme hover' : 'navy-theme hover'}`}
               onClick={toggleSelectedMark}
             >
               <Cross
                 size="32"
-                color={
-                  props.selectedMark === Mark.CROSS ? 'dark-navy' : 'silver'
-                }
+                color={selectedMark === Mark.CROSS ? 'dark-navy' : 'silver'}
               />
             </div>
             <div
-              className={`option ${props.selectedMark === Mark.CIRCLE ? 'silver-theme hover' : 'navy-theme hover'}`}
+              className={`option ${selectedMark === Mark.CIRCLE ? 'silver-theme hover' : 'navy-theme hover'}`}
               onClick={toggleSelectedMark}
             >
               <Circle
                 size="32"
-                color={
-                  props.selectedMark === Mark.CIRCLE ? 'dark-navy' : 'silver'
-                }
+                color={selectedMark === Mark.CIRCLE ? 'dark-navy' : 'silver'}
               />
             </div>
           </div>

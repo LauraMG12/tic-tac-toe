@@ -1,12 +1,25 @@
 .board {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
   gap: 20px;
   width: 100%;
+  list-style-type: none;
+  .column {
+    display: grid;
+    gap: 20px;
+  }
   .board-cell {
     width: 100%;
     height: calc(140px - $bottom-shadow-height);
     border-radius: $border-radius-15;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &.disabled {
+      pointer-events: none;
+      cursor: default;
+    }
   }
 }
