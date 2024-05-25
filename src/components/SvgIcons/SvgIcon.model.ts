@@ -1,6 +1,7 @@
 export interface IconProps {
   size: SvgIconSize;
   color: SvgIconColor;
+  style?: SvgIconType;
 }
 
 const SVG_ICON_COLOR = [
@@ -22,6 +23,9 @@ export const SVG_ICON_COLOR_MAP: Record<SvgIconColor, string> = {
 
 const SVG_ICON_SIZE = ['20', '32', '64'] as const;
 export type SvgIconSize = (typeof SVG_ICON_SIZE)[number];
+
+const SVG_ICON_STYLE = ['fill', 'stroke'] as const;
+export type SvgIconType = (typeof SVG_ICON_STYLE)[number];
 
 export function getCssCustomPropertyValue(propertyName: string): string {
   return getComputedStyle(document.documentElement).getPropertyValue(

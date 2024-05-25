@@ -16,8 +16,35 @@ const initialGameBoard = [
   [Mark.NONE, Mark.NONE, Mark.NONE],
 ];
 
+const renderIcon = (mark: Mark, isHoverState?: boolean) => {
+  switch (mark) {
+    case Mark.CROSS:
+      return (
+        <Cross
+          size="64"
+          color="blue"
+          style={isHoverState ? 'stroke' : 'fill'}
+        />
+      );
+    case Mark.CIRCLE:
+      return (
+        <Circle
+          size="64"
+          color="orange"
+          style={isHoverState ? 'stroke' : 'fill'}
+        />
+      );
+    default:
+      return null;
+  }
+};
+
 export default function Board(props: BoardProps) {
   const [gameBoard, setGameBoard] = useState(initialGameBoard);
+  const [hoveredCell, setHoveredCell] = useState<{
+    row: number;
+    col: number;
+  } | null>(null);
 
   function handleSelectCell(rowIndex: number, colIndex: number) {
     setGameBoard((prevGameBoard) => {
@@ -29,6 +56,15 @@ export default function Board(props: BoardProps) {
     });
     props.onSelectCell();
   }
+
+  function handleMouseEnter(rowIndex: number, colIndex: number) {
+    setHoveredCell({ row: rowIndex, col: colIndex });
+  }
+
+  function handleMouseLeave() {
+    setHoveredCell(null);
+  }
+
   return (
     <>
       <ol className="board">
@@ -39,15 +75,15 @@ export default function Board(props: BoardProps) {
                 <BoxShadow key={colIndex}>
                   <div
                     onClick={() => handleSelectCell(rowIndex, colIndex)}
+                    onMouseEnter={() => handleMouseEnter(rowIndex, colIndex)}
+                    onMouseLeave={handleMouseLeave}
                     className={`board-cell navy-theme ${playerMark !== Mark.NONE ? 'disabled' : ''}`}
                   >
-                    {playerMark === Mark.CROSS ? (
-                      <Cross size="64" color="blue" />
-                    ) : playerMark === Mark.CIRCLE ? (
-                      <Circle size="64" color="orange" />
-                    ) : (
-                      ''
-                    )}
+                    {renderIcon(playerMark)}
+                    {playerMark === Mark.NONE &&
+                      hoveredCell?.row === rowIndex &&
+                      hoveredCell?.col === colIndex &&
+                      renderIcon(props.activePlayer, true)}
                   </div>
                 </BoxShadow>
               ))}
