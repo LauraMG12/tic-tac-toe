@@ -9,6 +9,7 @@ interface ButtonProps {
   text?: ReactNode;
   theme: ColorTheme;
   wide?: boolean;
+  disable?: boolean;
   onButtonClick?: () => void;
 }
 
@@ -16,10 +17,10 @@ export default function Button(props: ButtonProps) {
   const squareButton = props.icon && !props.text;
   const clickable = !!props.onButtonClick;
   return (
-    <BoxShadow clickable={clickable} wide={props.wide}>
+    <BoxShadow clickable={clickable} wide={props.wide} disable={props.disable}>
       <button
         onClick={props.onButtonClick}
-        className={`button ${props.theme} ${clickable ? 'clickable hover' : ''} ${props.wide ? 'wide' : ''} ${squareButton ? 'square' : ''}`}
+        className={`button ${props.theme} ${clickable ? 'clickable hover' : ''} ${props.wide ? 'wide' : ''} ${squareButton ? 'square' : ''} ${props.disable ? 'disable' : ''}`}
       >
         {!!props.icon && <>{props.icon}</>}
         {!!props.text && <>{props.text}</>}

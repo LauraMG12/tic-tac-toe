@@ -9,6 +9,8 @@ import Circle from '../../../../components/SvgIcons/icons/Circle';
 
 interface GameBoardHeaderProps {
   activePlayer: Mark;
+  handleRedo: () => void;
+  disableRedo: boolean;
 }
 
 export default function GameBoardHeader(props: GameBoardHeaderProps) {
@@ -33,9 +35,10 @@ export default function GameBoardHeader(props: GameBoardHeaderProps) {
       />
       <div className="redo-button">
         <Button
+          disable={props.disableRedo}
           theme={ColorTheme.SILVER}
           icon={<Redo size="20" color="dark-navy" />}
-          onButtonClick={() => console.log('redo')}
+          onButtonClick={props.handleRedo}
         />
       </div>
     </div>

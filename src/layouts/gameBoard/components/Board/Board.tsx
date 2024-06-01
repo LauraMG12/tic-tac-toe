@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import BoxShadow from '../../../../components/BoxShadow/BoxShadow';
 import './Board.scss';
 import { CellData, Mark, TurnsData } from '../../../../utils/types/interfaces';
@@ -42,15 +42,19 @@ const renderIcon = (mark: Mark, isHoverState?: boolean) => {
 
 export default function Board(props: BoardProps) {
   const [hoveredCell, setHoveredCell] = useState<CellData | null>(null);
+  const [gameBoard, setGameBoard] = useState(initialGameBoard);
 
-  const gameBoard = initialGameBoard;
+  useEffect(() => {
+    const updatedGameBoard = initialGameBoard.map((row) => row.slice()); // create a deep copy of the initial game board
 
-  for (const turn of props.turns) {
-    const { cell, player } = turn;
-    const { row, col } = cell;
+    for (const turn of props.turns) {
+      const { cell, player } = turn;
+      const { row, col } = cell;
+      updatedGameBoard[row][col] = player;
+    }
 
-    gameBoard[row][col] = player;
-  }
+    setGameBoard(updatedGameBoard); // update the state
+  }, [props.turns]);
 
   function handleMouseEnter(rowIndex: number, colIndex: number) {
     setHoveredCell({ row: rowIndex, col: colIndex });
@@ -69,7 +73,10 @@ export default function Board(props: BoardProps) {
               {row.map((playerMark, colIndex) => (
                 <BoxShadow key={colIndex}>
                   <div
-                    onClick={() => props.onSelectCell(rowIndex, colIndex)}
+                    onClick={() => {
+                      handleMouseLeave();
+                      props.onSelectCell(rowIndex, colIndex);
+                    }}
                     onMouseEnter={() => handleMouseEnter(rowIndex, colIndex)}
                     onMouseLeave={handleMouseLeave}
                     className={`board-cell navy-theme ${playerMark !== Mark.NONE ? 'disabled' : ''}`}

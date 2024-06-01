@@ -15,7 +15,7 @@
   &.wide {
     width: 100%;
   }
-  &.clickable:active {
+  &.clickable:not(.disabled):active {
     & > :after {
       top: 0;
       opacity: 0;

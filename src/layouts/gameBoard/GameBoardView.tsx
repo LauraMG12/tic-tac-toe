@@ -26,9 +26,36 @@ export default function GameBoardView() {
     });
   }
 
+  function handleRedo() {
+    setGameTurns((prevTurns) => {
+      if (prevTurns.length === 0) {
+        return prevTurns;
+      }
+
+      const updatedTurns = [...prevTurns];
+      updatedTurns.pop();
+
+      setActivePlayer(() => {
+        if (updatedTurns.length === 0) {
+          return Mark.CROSS;
+        } else {
+          return updatedTurns.at(-1)?.player === Mark.CROSS
+            ? Mark.CIRCLE
+            : Mark.CROSS;
+        }
+      });
+
+      return updatedTurns;
+    });
+  }
+
   return (
     <>
-      <GameBoardHeader activePlayer={activePlayer} />
+      <GameBoardHeader
+        activePlayer={activePlayer}
+        handleRedo={handleRedo}
+        disableRedo={gameTurns.length === 0}
+      />
       <Board
         onSelectCell={handleSelectCell}
         turns={gameTurns}
