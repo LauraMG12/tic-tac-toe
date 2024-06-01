@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import BoxShadow from '../../../../components/BoxShadow/BoxShadow';
 import './Board.scss';
-import { Mark } from '../../../../utils/types/interfaces';
+import { CellData, Mark, TurnsData } from '../../../../utils/types/interfaces';
 import Cross from '../../../../components/SvgIcons/icons/Cross';
 import Circle from '../../../../components/SvgIcons/icons/Circle';
 
 interface BoardProps {
-  onSelectCell: () => void;
+  onSelectCell: (rowIndex: number, colIndex: number) => void;
+  turns: TurnsData[];
   activePlayer: Mark;
 }
 
@@ -40,21 +41,15 @@ const renderIcon = (mark: Mark, isHoverState?: boolean) => {
 };
 
 export default function Board(props: BoardProps) {
-  const [gameBoard, setGameBoard] = useState(initialGameBoard);
-  const [hoveredCell, setHoveredCell] = useState<{
-    row: number;
-    col: number;
-  } | null>(null);
+  const [hoveredCell, setHoveredCell] = useState<CellData | null>(null);
 
-  function handleSelectCell(rowIndex: number, colIndex: number) {
-    setGameBoard((prevGameBoard) => {
-      const updatedGameBoard = [
-        ...prevGameBoard.map((innerArray) => [...innerArray]),
-      ];
-      updatedGameBoard[rowIndex][colIndex] = props.activePlayer;
-      return updatedGameBoard;
-    });
-    props.onSelectCell();
+  const gameBoard = initialGameBoard;
+
+  for (const turn of props.turns) {
+    const { cell, player } = turn;
+    const { row, col } = cell;
+
+    gameBoard[row][col] = player;
   }
 
   function handleMouseEnter(rowIndex: number, colIndex: number) {
@@ -74,7 +69,7 @@ export default function Board(props: BoardProps) {
               {row.map((playerMark, colIndex) => (
                 <BoxShadow key={colIndex}>
                   <div
-                    onClick={() => handleSelectCell(rowIndex, colIndex)}
+                    onClick={() => props.onSelectCell(rowIndex, colIndex)}
                     onMouseEnter={() => handleMouseEnter(rowIndex, colIndex)}
                     onMouseLeave={handleMouseLeave}
                     className={`board-cell navy-theme ${playerMark !== Mark.NONE ? 'disabled' : ''}`}

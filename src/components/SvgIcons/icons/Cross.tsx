@@ -1,11 +1,7 @@
 import { IconProps, SVG_ICON_COLOR_MAP } from '../SvgIcon.model';
 
 export default function Cross(props: IconProps) {
-  const {
-    size,
-    color,
-    style = 'fill', // Default value for style
-  } = props;
+  const { size, color, style = 'fill' } = props;
   const iconColor = SVG_ICON_COLOR_MAP[color];
 
   return (

@@ -25,3 +25,13 @@ export interface Player {
   name: PlayerType;
   mark?: Mark;
 }
+
+export interface TurnsData {
+  cell: CellData;
+  player: Mark;
+}
+
+export interface CellData {
+  row: number;
+  col: number;
+}
