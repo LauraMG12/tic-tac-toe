@@ -7,5 +7,12 @@
   },
   "game_board": {
     "turn": "Turn"
+  },
+  "result": {
+    "winner_player": "Player {0} wins!",
+    "takes_the_round": "Takes the round",
+    "quit": "Quit",
+    "next_round": "Next round",
+    "tied_round": "Round tied"
   }
 }

@@ -5,9 +5,9 @@ import './Button.scss';
 import { ReactNode } from 'react';
 
 interface ButtonProps {
+  theme: ColorTheme;
   icon?: ReactNode;
   text?: ReactNode;
-  theme: ColorTheme;
   wide?: boolean;
   disable?: boolean;
   onButtonClick?: () => void;

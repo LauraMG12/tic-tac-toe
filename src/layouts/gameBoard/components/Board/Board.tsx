@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import BoxShadow from '../../../../components/BoxShadow/BoxShadow';
 import './Board.scss';
 import { CellData, Mark, TurnsData } from '../../../../utils/types/interfaces';
@@ -9,13 +9,8 @@ interface BoardProps {
   onSelectCell: (rowIndex: number, colIndex: number) => void;
   turns: TurnsData[];
   activePlayer: Mark;
+  gameBoard: Mark[][];
 }
-
-const initialGameBoard = [
-  [Mark.NONE, Mark.NONE, Mark.NONE],
-  [Mark.NONE, Mark.NONE, Mark.NONE],
-  [Mark.NONE, Mark.NONE, Mark.NONE],
-];
 
 const renderIcon = (mark: Mark, isHoverState?: boolean) => {
   switch (mark) {
@@ -42,19 +37,6 @@ const renderIcon = (mark: Mark, isHoverState?: boolean) => {
 
 export default function Board(props: BoardProps) {
   const [hoveredCell, setHoveredCell] = useState<CellData | null>(null);
-  const [gameBoard, setGameBoard] = useState(initialGameBoard);
-
-  useEffect(() => {
-    const updatedGameBoard = initialGameBoard.map((row) => row.slice()); // create a deep copy of the initial game board
-
-    for (const turn of props.turns) {
-      const { cell, player } = turn;
-      const { row, col } = cell;
-      updatedGameBoard[row][col] = player;
-    }
-
-    setGameBoard(updatedGameBoard); // update the state
-  }, [props.turns]);
 
   function handleMouseEnter(rowIndex: number, colIndex: number) {
     setHoveredCell({ row: rowIndex, col: colIndex });
@@ -67,7 +49,7 @@ export default function Board(props: BoardProps) {
   return (
     <>
       <ol className="board">
-        {gameBoard.map((row, rowIndex) => (
+        {props.gameBoard.map((row, rowIndex) => (
           <li key={rowIndex}>
             <ol className="column">
               {row.map((playerMark, colIndex) => (

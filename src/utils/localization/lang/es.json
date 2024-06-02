@@ -7,5 +7,12 @@
   },
   "game_board": {
     "turn": "Turno"
+  },
+  "result": {
+    "winner_player": "El jugador {0} gana!",
+    "takes_the_round": "Se lleva la ronda",
+    "quit": "Salir",
+    "next_round": "Siguiente ronda",
+    "tied_round": "Empate"
   }
 }

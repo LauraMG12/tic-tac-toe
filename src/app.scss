@@ -41,6 +41,7 @@ $border-radius-15: 15px;
   --dark-navy: #1a2a33;
 
   background-color: $dark-navy;
+  position: relative;
 }
 
 * {
@@ -177,6 +178,14 @@ $button-height: 52px;
       }
     }
   }
+}
+
+.blue {
+  color: $blue;
+}
+
+.orange {
+  color: $orange;
 }
 
 .dark-navy {

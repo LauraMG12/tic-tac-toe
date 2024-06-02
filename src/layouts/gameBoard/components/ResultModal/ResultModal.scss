@@ -1,0 +1,34 @@
+.result-modal-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  align-items: center;
+
+  .result-modal {
+    width: 100%;
+    padding: 45px 0;
+    background-color: $semi-dark-navy;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+
+    .winner-text {
+      margin: 16px 0 24px 0;
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+    .buttons-wrapper {
+      display: flex;
+      gap: 16px;
+    }
+  }
+}

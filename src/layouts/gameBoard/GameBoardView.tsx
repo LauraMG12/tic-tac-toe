@@ -1,22 +1,54 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Board from './components/Board/Board';
 import GameBoardHeader from './components/GameBoardHeader/GameBoardHeader';
 import ScoreBoard from './components/ScoreBoard/ScoreBoard';
 import { Mark, TurnsData } from '../../utils/types/interfaces';
+import {
+  INITIAL_GAME_BOARD,
+  WINNING_COMBINATIONS,
+  deriveActivePlayer,
+} from '../../utils/helpers/helpers';
+import ResultModal from './components/ResultModal/ResultModal';
 
 export default function GameBoardView() {
-  const [activePlayer, setActivePlayer] = useState(Mark.CROSS);
   const [gameTurns, setGameTurns] = useState<TurnsData[]>([]);
+  const [gameBoard, setGameBoard] = useState(INITIAL_GAME_BOARD);
+
+  const activePlayer = deriveActivePlayer(gameTurns);
+
+  useEffect(() => {
+    const updatedGameBoard = INITIAL_GAME_BOARD.map((row) => row.slice());
+
+    for (const turn of gameTurns) {
+      const { cell, player } = turn;
+      const { row, col } = cell;
+      updatedGameBoard[row][col] = player;
+    }
+    setGameBoard(updatedGameBoard);
+  }, [gameTurns]);
+
+  let winner;
+  if (gameTurns.length > 4) {
+    for (const combination of WINNING_COMBINATIONS) {
+      const firstCellMark = gameBoard[combination[0].row][combination[0].col];
+      const secondCellMark = gameBoard[combination[1].row][combination[1].col];
+      const thirdCellMark = gameBoard[combination[2].row][combination[2].col];
+      if (
+        firstCellMark !== Mark.NONE &&
+        firstCellMark === secondCellMark &&
+        firstCellMark === thirdCellMark
+      ) {
+        winner = firstCellMark;
+      }
+    }
+  }
+  if (gameTurns.length === 9) {
+    winner = Mark.NONE;
+  }
 
   function handleSelectCell(rowIndex: number, colIndex: number) {
-    setActivePlayer((currActivePlayer) => {
-      return currActivePlayer === Mark.CROSS ? Mark.CIRCLE : Mark.CROSS;
-    });
     setGameTurns((prevTurns) => {
-      let currentPlayer = Mark.CROSS;
-      if (prevTurns.length > 0 && prevTurns.at(-1)?.player === Mark.CROSS) {
-        currentPlayer = Mark.CIRCLE;
-      }
+      const currentPlayer = deriveActivePlayer(prevTurns);
       const updatedTurns = [
         ...prevTurns,
         { cell: { row: rowIndex, col: colIndex }, player: currentPlayer },
@@ -35,16 +67,6 @@ export default function GameBoardView() {
       const updatedTurns = [...prevTurns];
       updatedTurns.pop();
 
-      setActivePlayer(() => {
-        if (updatedTurns.length === 0) {
-          return Mark.CROSS;
-        } else {
-          return updatedTurns.at(-1)?.player === Mark.CROSS
-            ? Mark.CIRCLE
-            : Mark.CROSS;
-        }
-      });
-
       return updatedTurns;
     });
   }
@@ -60,7 +82,10 @@ export default function GameBoardView() {
         onSelectCell={handleSelectCell}
         turns={gameTurns}
         activePlayer={activePlayer}
+        gameBoard={gameBoard}
       />
+      {winner && <ResultModal winner={winner} />}
+
       <ScoreBoard />
     </>
   );
