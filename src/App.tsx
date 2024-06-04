@@ -9,13 +9,16 @@ export default function App() {
   function onStartGame(): void {
     setIsNewGame(false);
   }
+  function onQuitGame(): void {
+    setIsNewGame(true);
+  }
 
   return (
     <div className="app-wrapper">
       {isNewGame ? (
         <NewGameMenuView onStartGame={onStartGame} />
       ) : (
-        <GameBoardView />
+        <GameBoardView onQuitGame={onQuitGame} />
       )}
     </div>
   );

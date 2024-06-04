@@ -30,6 +30,11 @@ export interface TurnsData {
   cell: CellData;
   player: Mark;
 }
+export interface GameScoreData {
+  cross: number;
+  circle: number;
+  ties: number;
+}
 
 export interface CellData {
   row: number;

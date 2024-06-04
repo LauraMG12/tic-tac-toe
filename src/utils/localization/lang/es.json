@@ -14,5 +14,8 @@
     "quit": "Salir",
     "next_round": "Siguiente ronda",
     "tied_round": "Empate"
+  },
+  "score": {
+    "ties": "Empate"
   }
 }

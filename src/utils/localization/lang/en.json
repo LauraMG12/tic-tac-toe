@@ -14,5 +14,8 @@
     "quit": "Quit",
     "next_round": "Next round",
     "tied_round": "Round tied"
+  },
+  "score": {
+    "ties": "ties"
   }
 }

@@ -2,17 +2,23 @@ import { useEffect, useState } from 'react';
 import Board from './components/Board/Board';
 import GameBoardHeader from './components/GameBoardHeader/GameBoardHeader';
 import ScoreBoard from './components/ScoreBoard/ScoreBoard';
-import { Mark, TurnsData } from '../../utils/types/interfaces';
+import { GameScoreData, Mark, TurnsData } from '../../utils/types/interfaces';
 import {
   INITIAL_GAME_BOARD,
+  INITIAL_GAME_SCORE,
   WINNING_COMBINATIONS,
   deriveActivePlayer,
 } from '../../utils/helpers/helpers';
 import ResultModal from './components/ResultModal/ResultModal';
 
-export default function GameBoardView() {
+interface GameBoardViewProps {
+  onQuitGame: () => void;
+}
+
+export default function GameBoardView(props: GameBoardViewProps) {
   const [gameTurns, setGameTurns] = useState<TurnsData[]>([]);
   const [gameBoard, setGameBoard] = useState(INITIAL_GAME_BOARD);
+  const [gameScore, setGameScore] = useState<GameScoreData>(INITIAL_GAME_SCORE);
 
   const activePlayer = deriveActivePlayer(gameTurns);
 
@@ -27,7 +33,7 @@ export default function GameBoardView() {
     setGameBoard(updatedGameBoard);
   }, [gameTurns]);
 
-  let winner;
+  let winner: Mark;
   if (gameTurns.length > 4) {
     for (const combination of WINNING_COMBINATIONS) {
       const firstCellMark = gameBoard[combination[0].row][combination[0].col];
@@ -71,6 +77,29 @@ export default function GameBoardView() {
     });
   }
 
+  function handleNextRound() {
+    setGameTurns([]);
+    setGameScore((prevScore) => {
+      const updatedScore = { ...prevScore };
+      switch (winner) {
+        case Mark.CROSS:
+          updatedScore.cross++;
+          break;
+        case Mark.CIRCLE:
+          updatedScore.circle++;
+          break;
+        case Mark.NONE:
+          updatedScore.ties++;
+          break;
+      }
+      return updatedScore;
+    });
+  }
+
+  function handleQuit() {
+    props.onQuitGame();
+  }
+
   return (
     <>
       <GameBoardHeader
@@ -84,9 +113,15 @@ export default function GameBoardView() {
         activePlayer={activePlayer}
         gameBoard={gameBoard}
       />
-      {winner && <ResultModal winner={winner} />}
+      {winner && (
+        <ResultModal
+          winner={winner}
+          handleNextRound={handleNextRound}
+          handleQuit={handleQuit}
+        />
+      )}
 
-      <ScoreBoard />
+      <ScoreBoard score={gameScore} />
     </>
   );
 }

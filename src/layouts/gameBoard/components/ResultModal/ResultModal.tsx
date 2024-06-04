@@ -2,35 +2,13 @@ import { useTranslation } from 'react-i18next';
 import Button from '../../../../components/Button/Button';
 import { ColorTheme, Mark } from '../../../../utils/types/interfaces';
 import './ResultModal.scss';
-import Cross from '../../../../components/SvgIcons/icons/Cross';
-import Circle from '../../../../components/SvgIcons/icons/Circle';
+import { renderIcon } from '../../../../utils/helpers/helpers';
 
 interface ResultModalProps {
   winner: Mark;
+  handleNextRound: () => void;
+  handleQuit: () => void;
 }
-
-const renderIcon = (mark: Mark, isHoverState?: boolean) => {
-  switch (mark) {
-    case Mark.CROSS:
-      return (
-        <Cross
-          size="64"
-          color="blue"
-          style={isHoverState ? 'stroke' : 'fill'}
-        />
-      );
-    case Mark.CIRCLE:
-      return (
-        <Circle
-          size="64"
-          color="orange"
-          style={isHoverState ? 'stroke' : 'fill'}
-        />
-      );
-    default:
-      return null;
-  }
-};
 
 export default function ResultModal(props: ResultModalProps) {
   const { t } = useTranslation();
@@ -59,14 +37,14 @@ export default function ResultModal(props: ResultModalProps) {
           <Button
             theme={ColorTheme.SILVER}
             text={<p className="heading-xs dark-navy">{t('result.quit')}</p>}
-            onButtonClick={() => console.log('quit')}
+            onButtonClick={props.handleQuit}
           ></Button>
           <Button
             theme={ColorTheme.ORANGE}
             text={
               <p className="heading-xs dark-navy">{t('result.next_round')}</p>
             }
-            onButtonClick={() => console.log('next round')}
+            onButtonClick={props.handleNextRound}
           ></Button>
         </div>
       </div>
