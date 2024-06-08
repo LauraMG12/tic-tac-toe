@@ -6,7 +6,7 @@ import { renderIcon } from '../../../../utils/helpers/helpers';
 
 interface BoardProps {
   onSelectCell: (rowIndex: number, colIndex: number) => void;
-  turns: TurnsData[];
+  markToDissappear: TurnsData | undefined;
   activePlayer: Mark;
   gameBoard: Mark[][];
 }
@@ -20,6 +20,15 @@ export default function Board(props: BoardProps) {
 
   function handleMouseLeave() {
     setHoveredCell(null);
+  }
+
+  function isMarkToDissappear(rowIndex: number, colIndex: number) {
+    if (props.markToDissappear) {
+      return (
+        rowIndex === props.markToDissappear.cell.row &&
+        colIndex === props.markToDissappear.cell.col
+      );
+    }
   }
 
   return (
@@ -39,7 +48,9 @@ export default function Board(props: BoardProps) {
                     onMouseLeave={handleMouseLeave}
                     className={`board-cell navy-theme ${playerMark !== Mark.NONE ? 'disabled' : ''}`}
                   >
-                    {renderIcon(playerMark)}
+                    {isMarkToDissappear(rowIndex, colIndex)
+                      ? renderIcon(playerMark, false, true)
+                      : renderIcon(playerMark)}
                     {playerMark === Mark.NONE &&
                       hoveredCell?.row === rowIndex &&
                       hoveredCell?.col === colIndex &&

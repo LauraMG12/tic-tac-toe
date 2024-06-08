@@ -21,6 +21,7 @@ export default function GameBoardView(props: GameBoardViewProps) {
   const [gameScore, setGameScore] = useState<GameScoreData>(INITIAL_GAME_SCORE);
 
   const activePlayer = deriveActivePlayer(gameTurns);
+  let winner: Mark | null = null;
 
   useEffect(() => {
     const updatedGameBoard = INITIAL_GAME_BOARD.map((row) => row.slice());
@@ -33,8 +34,11 @@ export default function GameBoardView(props: GameBoardViewProps) {
     setGameBoard(updatedGameBoard);
   }, [gameTurns]);
 
-  let winner: Mark;
   if (gameTurns.length > 4) {
+    checkWinner();
+  }
+
+  function checkWinner() {
     for (const combination of WINNING_COMBINATIONS) {
       const firstCellMark = gameBoard[combination[0].row][combination[0].col];
       const secondCellMark = gameBoard[combination[1].row][combination[1].col];
@@ -45,11 +49,10 @@ export default function GameBoardView(props: GameBoardViewProps) {
         firstCellMark === thirdCellMark
       ) {
         winner = firstCellMark;
+      } else if (gameTurns.length === 9) {
+        winner = Mark.NONE;
       }
     }
-  }
-  if (gameTurns.length === 9) {
-    winner = Mark.NONE;
   }
 
   function handleSelectCell(rowIndex: number, colIndex: number) {
@@ -60,6 +63,9 @@ export default function GameBoardView(props: GameBoardViewProps) {
         { cell: { row: rowIndex, col: colIndex }, player: currentPlayer },
       ];
 
+      if (prevTurns.length === 6) {
+        updatedTurns.shift();
+      }
       return updatedTurns;
     });
   }
@@ -109,7 +115,7 @@ export default function GameBoardView(props: GameBoardViewProps) {
       />
       <Board
         onSelectCell={handleSelectCell}
-        turns={gameTurns}
+        markToDissappear={gameTurns.length === 6 ? gameTurns[0] : undefined}
         activePlayer={activePlayer}
         gameBoard={gameBoard}
       />

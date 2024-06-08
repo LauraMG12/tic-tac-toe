@@ -7,7 +7,9 @@ export interface IconProps {
 const SVG_ICON_COLOR = [
   'currentColor',
   'blue',
+  'dark-blue',
   'orange',
+  'dark-orange',
   'silver',
   'dark-navy',
 ] as const;
@@ -16,7 +18,9 @@ export type SvgIconColor = (typeof SVG_ICON_COLOR)[number];
 export const SVG_ICON_COLOR_MAP: Record<SvgIconColor, string> = {
   currentColor: getCssCustomPropertyValue('currentColor'),
   blue: getCssCustomPropertyValue('blue'),
+  'dark-blue': getCssCustomPropertyValue('dark-blue'),
   orange: getCssCustomPropertyValue('orange'),
+  'dark-orange': getCssCustomPropertyValue('dark-orange'),
   silver: getCssCustomPropertyValue('silver'),
   'dark-navy': getCssCustomPropertyValue('dark-navy'),
 };
