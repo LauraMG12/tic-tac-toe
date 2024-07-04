@@ -25,7 +25,7 @@ export const SVG_ICON_COLOR_MAP: Record<SvgIconColor, string> = {
   'dark-navy': getCssCustomPropertyValue('dark-navy'),
 };
 
-const SVG_ICON_SIZE = ['20', '32', '64'] as const;
+const SVG_ICON_SIZE = ['20', '32', '40', '64'] as const;
 export type SvgIconSize = (typeof SVG_ICON_SIZE)[number];
 
 const SVG_ICON_STYLE = ['fill', 'stroke'] as const;
