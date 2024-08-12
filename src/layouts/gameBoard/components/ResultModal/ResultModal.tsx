@@ -17,9 +17,7 @@ export default function ResultModal(props: ResultModalProps) {
     <aside className="result-modal-wrapper">
       <div className="result-modal">
         {props.winner !== Mark.NONE && (
-          <p className="heading-xs silver">
-            {t('result.winner_player', { playerName: props.winner })}
-          </p>
+          <p className="heading-xs silver">{t('result.winner_player')}</p>
         )}
         <div className="winner-text">
           {props.winner !== Mark.NONE ? (

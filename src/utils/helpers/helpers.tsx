@@ -1,10 +1,6 @@
 import Circle from '../../components/SvgIcons/icons/Circle';
 import Cross from '../../components/SvgIcons/icons/Cross';
-import { useIsSmallDevice } from '../hooks/customHools';
 import { GameScoreData, Mark, TurnsData } from '../types/interfaces';
-const isSmallDevice = useIsSmallDevice();
-
-export const SMALL_DEVICE_THRESHOLD = 508;
 
 export function deriveActivePlayer(gameTurns: TurnsData[]) {
   let currentPlayer = Mark.CROSS;
@@ -78,7 +74,7 @@ export const renderIcon = (
     case Mark.CROSS:
       return (
         <Cross
-          size={isSmallDevice ? '64' : '40'}
+          size="64"
           color={willDissappear ? 'dark-blue' : 'blue'}
           style={isHoverState ? 'stroke' : 'fill'}
         />
@@ -86,7 +82,7 @@ export const renderIcon = (
     case Mark.CIRCLE:
       return (
         <Circle
-          size={isSmallDevice ? '64' : '40'}
+          size="64"
           color={willDissappear ? 'dark-orange' : 'orange'}
           style={isHoverState ? 'stroke' : 'fill'}
         />

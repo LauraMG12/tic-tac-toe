@@ -9,10 +9,8 @@
     gap: 20px;
   }
   .board-cell {
-    aspect-ratio: 1 / 1;
     width: 100%;
-    max-height: calc(140px - $bottom-shadow-height);
-    min-height: calc(96px - $bottom-shadow-height);
+    height: calc(140px - $bottom-shadow-height);
     border-radius: $border-radius-15;
     display: flex;
     align-items: center;
