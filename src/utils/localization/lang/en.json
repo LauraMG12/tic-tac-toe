@@ -9,7 +9,7 @@
     "turn": "Turn"
   },
   "result": {
-    "winner_player": "Player {0} wins!",
+    "winner_player": "Player {{playerName}} wins!",
     "takes_the_round": "Takes the round",
     "quit": "Quit",
     "next_round": "Next round",

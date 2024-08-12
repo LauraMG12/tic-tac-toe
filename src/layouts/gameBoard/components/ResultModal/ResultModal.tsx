@@ -3,6 +3,7 @@ import Button from '../../../../components/Button/Button';
 import { ColorTheme, Mark } from '../../../../utils/types/interfaces';
 import './ResultModal.scss';
 import { renderIcon } from '../../../../utils/helpers/helpers';
+import { useIsSmallDevice } from '../../../../utils/hooks/customHooks';
 
 interface ResultModalProps {
   winner: Mark;
@@ -16,15 +17,16 @@ export default function ResultModal(props: ResultModalProps) {
   return (
     <aside className="result-modal-wrapper">
       <div className="result-modal">
-        {props.winner !== Mark.NONE && (
-          <p className="heading-xs silver">{t('result.winner_player')}</p>
-        )}
+      <p className="heading-xs silver">
+            {t('result.winner_player', { playerName: props.winner })}
+          </p>
+
         <div className="winner-text">
           {props.winner !== Mark.NONE ? (
             <>
-              {renderIcon(props.winner)}
+              {renderIcon(props.winner,  useIsSmallDevice())}
               <p
-                className={`heading-l ${props.winner === Mark.CROSS ? 'blue' : 'orange'}`}
+                className={`winner-text ${useIsSmallDevice() ? 'heading-m' : 'heading-l'} ${props.winner === Mark.CROSS ? 'blue' : 'orange'}`}
               >
                 {t('result.takes_the_round', props.winner)}
               </p>

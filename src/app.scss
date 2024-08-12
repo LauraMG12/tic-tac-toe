@@ -51,6 +51,7 @@ $border-radius-15: 15px;
   padding: 0;
   box-sizing: border-box;
   text-transform: uppercase;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .button {
@@ -196,4 +197,11 @@ $button-height: 52px;
 
 .silver {
   color: $silver;
+}
+
+// MIXIN
+@mixin for-small-devices-max {
+  @media (max-width: $breakpoint_small) {
+    @content;
+  }
 }

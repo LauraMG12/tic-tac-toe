@@ -13,6 +13,7 @@
   .result-modal {
     width: 100%;
     padding: 45px 0;
+    margin-bottom: 8px;
     background-color: $semi-dark-navy;
     justify-content: center;
     align-items: center;
@@ -21,7 +22,7 @@
     height: fit-content;
 
     .winner-text {
-      margin: 16px 0 24px 0;
+      margin: 16px 0;
       display: flex;
       gap: 24px;
       align-items: center;

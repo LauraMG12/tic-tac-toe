@@ -67,6 +67,7 @@ export const WINNING_COMBINATIONS = [
 
 export const renderIcon = (
   mark: Mark,
+  isSmmallDevice:boolean,
   isHoverState?: boolean,
   willDissappear?: boolean
 ) => {
@@ -74,7 +75,7 @@ export const renderIcon = (
     case Mark.CROSS:
       return (
         <Cross
-          size="64"
+          size={isSmmallDevice?'40':'64'}
           color={willDissappear ? 'dark-blue' : 'blue'}
           style={isHoverState ? 'stroke' : 'fill'}
         />
@@ -82,8 +83,8 @@ export const renderIcon = (
     case Mark.CIRCLE:
       return (
         <Circle
-          size="64"
-          color={willDissappear ? 'dark-orange' : 'orange'}
+        size={isSmmallDevice?'40':'64'}
+        color={willDissappear ? 'dark-orange' : 'orange'}
           style={isHoverState ? 'stroke' : 'fill'}
         />
       );

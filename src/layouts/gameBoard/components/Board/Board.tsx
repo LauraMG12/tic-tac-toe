@@ -3,6 +3,7 @@ import BoxShadow from '../../../../components/BoxShadow/BoxShadow';
 import './Board.scss';
 import { CellData, Mark, TurnsData } from '../../../../utils/types/interfaces';
 import { renderIcon } from '../../../../utils/helpers/helpers';
+import { useIsSmallDevice } from '../../../../utils/hooks/customHooks';
 
 interface BoardProps {
   onSelectCell: (rowIndex: number, colIndex: number) => void;
@@ -49,12 +50,12 @@ export default function Board(props: BoardProps) {
                     className={`board-cell navy-theme ${playerMark !== Mark.NONE ? 'disabled' : ''}`}
                   >
                     {isMarkToDissappear(rowIndex, colIndex)
-                      ? renderIcon(playerMark, false, true)
-                      : renderIcon(playerMark)}
+                      ? renderIcon(playerMark, useIsSmallDevice(), false, true)
+                      : renderIcon(playerMark,  useIsSmallDevice())}
                     {playerMark === Mark.NONE &&
                       hoveredCell?.row === rowIndex &&
                       hoveredCell?.col === colIndex &&
-                      renderIcon(props.activePlayer, true)}
+                      renderIcon(props.activePlayer, useIsSmallDevice(), true)}
                   </div>
                 </BoxShadow>
               ))}

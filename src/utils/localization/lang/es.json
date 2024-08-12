@@ -9,7 +9,7 @@
     "turn": "Turno"
   },
   "result": {
-    "winner_player": "El jugador {0} gana!",
+    "winner_player": "El jugador {{playerName}} gana!",
     "takes_the_round": "Se lleva la ronda",
     "quit": "Salir",
     "next_round": "Siguiente ronda",
