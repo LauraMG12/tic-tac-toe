@@ -13,20 +13,21 @@ interface ResultModalProps {
 
 export default function ResultModal(props: ResultModalProps) {
   const { t } = useTranslation();
+  const isSmallDevice = useIsSmallDevice();
 
   return (
     <aside className="result-modal-wrapper">
       <div className="result-modal">
-      <p className="heading-xs silver">
-            {t('result.winner_player', { playerName: props.winner })}
-          </p>
+        <p className="heading-xs silver">
+          {t('result.winner_player', { playerName: props.winner })}
+        </p>
 
         <div className="winner-text">
           {props.winner !== Mark.NONE ? (
             <>
-              {renderIcon(props.winner,  useIsSmallDevice())}
+              {renderIcon(props.winner, isSmallDevice)}
               <p
-                className={`winner-text ${useIsSmallDevice() ? 'heading-m' : 'heading-l'} ${props.winner === Mark.CROSS ? 'blue' : 'orange'}`}
+                className={`winner-text ${isSmallDevice ? 'heading-m' : 'heading-l'} ${props.winner === Mark.CROSS ? 'blue' : 'orange'}`}
               >
                 {t('result.takes_the_round', props.winner)}
               </p>

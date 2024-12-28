@@ -14,6 +14,7 @@ interface BoardProps {
 
 export default function Board(props: BoardProps) {
   const [hoveredCell, setHoveredCell] = useState<CellData | null>(null);
+  const isSmallDevice = useIsSmallDevice();
 
   function handleMouseEnter(rowIndex: number, colIndex: number) {
     setHoveredCell({ row: rowIndex, col: colIndex });
@@ -50,12 +51,12 @@ export default function Board(props: BoardProps) {
                     className={`board-cell navy-theme ${playerMark !== Mark.NONE ? 'disabled' : ''}`}
                   >
                     {isMarkToDissappear(rowIndex, colIndex)
-                      ? renderIcon(playerMark, useIsSmallDevice(), false, true)
-                      : renderIcon(playerMark,  useIsSmallDevice())}
+                      ? renderIcon(playerMark, isSmallDevice, false, true)
+                      : renderIcon(playerMark, isSmallDevice)}
                     {playerMark === Mark.NONE &&
                       hoveredCell?.row === rowIndex &&
                       hoveredCell?.col === colIndex &&
-                      renderIcon(props.activePlayer, useIsSmallDevice(), true)}
+                      renderIcon(props.activePlayer, isSmallDevice, true)}
                   </div>
                 </BoxShadow>
               ))}

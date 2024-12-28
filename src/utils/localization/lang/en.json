@@ -2,7 +2,7 @@
   "player_selector": {
     "pick_player_one_mark": "Pick player 1's mark",
     "x_goes_first": "Remember: x goes first",
-    "one_player": "New game (vs CPU)",
+    "one_player": "New game (vs AI)",
     "two_players": "New game (vs player)"
   },
   "game_board": {
